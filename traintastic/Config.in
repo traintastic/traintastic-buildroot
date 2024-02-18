@@ -1,0 +1,1 @@
+source "$BR2_EXTERNAL_TRAINTASTIC_PATH/package/traintastic-server/Config.in"

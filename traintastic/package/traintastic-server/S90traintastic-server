@@ -1,0 +1,40 @@
+#!/bin/sh
+#
+# Starts traintastic server.
+#
+
+start() {
+	TRAINTASTIC_SERVER_ARGS="-d -D /var/opt/traintastic"
+
+	printf "Starting traintastic server: "
+
+	start-stop-daemon -S -q -p /var/run/traintastic-server.pid \
+		--exec /opt/traintastic/bin/traintastic-server -- $TRAINTASTIC_SERVER_ARGS
+	[ $? = 0 ] && echo "OK" || echo "FAIL"
+}
+stop() {
+	printf "Stopping traintastic server: "
+	start-stop-daemon -K -q -p /var/run/traintastic-server.pid
+	[ $? = 0 ] && echo "OK" || echo "FAIL"
+}
+restart() {
+	stop
+	start
+}
+
+case "$1" in
+  start)
+  	start
+	;;
+  stop)
+  	stop
+	;;
+  restart|reload)
+  	restart
+	;;
+  *)
+	echo "Usage: $0 {start|stop|restart}"
+	exit 1
+esac
+
+exit $?

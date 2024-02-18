@@ -1,0 +1,13 @@
+config BR2_PACKAGE_TRAINTASTIC_SERVER
+	bool "traintastic-server"
+	depends on BR2_INSTALL_LIBSTDCPP
+	depends on BR2_TOOLCHAIN_HAS_THREADS
+	depends on BR2_PACKAGE_LUA_5_3
+	select BR2_PACKAGE_BOOST
+	select BR2_PACKAGE_BOOST_PROGRAM_OPTIONS
+	select BR2_PACKAGE_ZLIB
+	select BR2_PACKAGE_LIBARCHIVE
+	help
+	  Traintastic server application.
+
+	  https://traintastic.org
