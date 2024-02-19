@@ -1,0 +1,22 @@
+name: Build
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Configure
+      working-directory: ${{github.workspace}}/buildroot
+      run: make BR2_EXTERNAL=../traintastic traintastic-server-rpi4_defconfig 
+
+    - name: Build image
+      working-directory: ${{github.workspace}}/buildroot
+      run: make all
