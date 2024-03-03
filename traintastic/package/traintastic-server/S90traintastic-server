@@ -4,7 +4,7 @@
 #
 
 start() {
-	TRAINTASTIC_SERVER_ARGS="-d -D /var/opt/traintastic"
+	TRAINTASTIC_SERVER_ARGS="-d -D /var/opt/traintastic -u traintastic-server -g traintastic -P /var/run/traintastic-server.pid"
 
 	printf "Starting traintastic server: "
 
